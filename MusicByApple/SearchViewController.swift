@@ -8,16 +8,15 @@
 import UIKit
 import Alamofire
 
-struct TrackModel{
-    var trackName: String
-    var artistName: String
-}
+
 
 class SearchViewController: UITableViewController {
     
-    let tracks: [TrackModel] = [TrackModel(trackName: "qq", artistName: "df"),
-                               TrackModel(trackName: "JJH", artistName: "JHHG")]
+    var networkService = NetworkService()
+    
+    private var tracks = [Track]()
     let searchController = UISearchController(searchResultsController: nil)
+    private var timer: Timer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +47,13 @@ class SearchViewController: UITableViewController {
 
 extension SearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print(searchText)
+        
+        timer?.invalidate()
+        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { [weak self] _ in
+            self?.networkService.fetchTracks(searchText: searchText, completion: { [weak self] searchResults in
+                self?.tracks = searchResults?.results ?? [Track(artistName: "none", trackName: "none")]
+                self?.tableView.reloadData()
+            })
+        })
     }
 }
