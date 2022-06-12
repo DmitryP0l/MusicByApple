@@ -16,7 +16,7 @@ class MainTabBarController: UITabBarController {
     }
     
     private func setControllers() {
-        viewControllers = [ generateViewController(rootVC: SearchViewController(),
+        viewControllers = [ generateViewController(rootVC: SearchMusicViewController(),
                                                    image: UIImage(systemName: "magnifyingglass")!, title: "Search"),
                             generateViewController(rootVC: ViewController(),
                                                    image: UIImage(systemName: "music.note.list")!, title: "Library")
