@@ -9,6 +9,8 @@ import UIKit
 
 class MainTabBarController: UITabBarController {
     
+    let searchVC: SearchViewController = SearchViewController.loadFromStoryboard()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -16,7 +18,7 @@ class MainTabBarController: UITabBarController {
     }
     
     private func setControllers() {
-        viewControllers = [ generateViewController(rootVC: SearchMusicViewController(),
+        viewControllers = [ generateViewController(rootVC: searchVC,
                                                    image: UIImage(systemName: "magnifyingglass")!, title: "Search"),
                             generateViewController(rootVC: ViewController(),
                                                    image: UIImage(systemName: "music.note.list")!, title: "Library")
