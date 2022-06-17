@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainTabBarController: UITabBarController {
+final class MainTabBarController: UITabBarController {
     
     let searchVC: SearchViewController = SearchViewController.loadFromStoryboard()
     
