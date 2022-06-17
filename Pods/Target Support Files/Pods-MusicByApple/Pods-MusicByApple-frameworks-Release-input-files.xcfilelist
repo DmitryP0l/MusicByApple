@@ -1,2 +1,3 @@
 ${PODS_ROOT}/Target Support Files/Pods-MusicByApple/Pods-MusicByApple-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
+${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		B402BF322855237F0050FE78 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B402BF312855237E0050FE78 /* NetworkService.swift */; };
+		B49B78F5285C67DD0095A254 /* TrackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B49B78F4285C67DC0095A254 /* TrackCell.xib */; };
+		B49B78F7285C681C0095A254 /* TrackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49B78F6285C681C0095A254 /* TrackCell.swift */; };
 		B4AC11AC2856793B00971C64 /* SearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AC11A52856793B00971C64 /* SearchPresenter.swift */; };
 		B4AC11AD2856793B00971C64 /* SearchWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AC11A62856793B00971C64 /* SearchWorker.swift */; };
 		B4AC11AE2856793B00971C64 /* SearchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AC11A72856793B00971C64 /* SearchRouter.swift */; };
@@ -30,6 +32,8 @@
 
 /* Begin PBXFileReference section */
 		B402BF312855237E0050FE78 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		B49B78F4285C67DC0095A254 /* TrackCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackCell.xib; sourceTree = "<group>"; };
+		B49B78F6285C681C0095A254 /* TrackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackCell.swift; sourceTree = "<group>"; };
 		B4AC11A52856793B00971C64 /* SearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPresenter.swift; sourceTree = "<group>"; };
 		B4AC11A62856793B00971C64 /* SearchWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchWorker.swift; sourceTree = "<group>"; };
 		B4AC11A72856793B00971C64 /* SearchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRouter.swift; sourceTree = "<group>"; };
@@ -66,6 +70,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B49B78F3285C679D0095A254 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				B49B78F4285C67DC0095A254 /* TrackCell.xib */,
+				B49B78F6285C681C0095A254 /* TrackCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		B49B78F8285C6F7C0095A254 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B4B308D82854A55400185812 /* SearchResponseModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		B4AC11A32856781000971C64 /* Support */ = {
 			isa = PBXGroup;
 			children = (
@@ -80,6 +101,7 @@
 		B4AC11A42856784400971C64 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				B49B78F8285C6F7C0095A254 /* Models */,
 				B402BF312855237E0050FE78 /* NetworkService.swift */,
 			);
 			path = Services;
@@ -120,7 +142,6 @@
 				B4B308C4285352B500185812 /* ViewController.swift */,
 				B4B308D42853538900185812 /* MainTabBarController.swift */,
 				B4B308D62853587900185812 /* SearchMusicViewController.swift */,
-				B4B308D82854A55400185812 /* SearchResponseModel.swift */,
 				B4B308C6285352B500185812 /* Main.storyboard */,
 				B4AC11A32856781000971C64 /* Support */,
 				B4B308CE285352B900185812 /* Info.plist */,
@@ -131,6 +152,7 @@
 		B4DBB5F62856757C0001A32F /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				B49B78F3285C679D0095A254 /* Cell */,
 				B4AC11B3285915E400971C64 /* SearchViewController.storyboard */,
 				B4AC11A92856793B00971C64 /* SearchViewController.swift */,
 				B4AC11AA2856793B00971C64 /* SearchInteractor.swift */,
@@ -220,6 +242,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4B308CD285352B900185812 /* LaunchScreen.storyboard in Resources */,
+				B49B78F5285C67DD0095A254 /* TrackCell.xib in Resources */,
 				B4B308CA285352B800185812 /* Assets.xcassets in Resources */,
 				B4AC11B4285915E400971C64 /* SearchViewController.storyboard in Resources */,
 				B4B308C8285352B500185812 /* Main.storyboard in Resources */,
@@ -280,6 +303,7 @@
 				B4B308C5285352B500185812 /* ViewController.swift in Sources */,
 				B4AC11B12856793B00971C64 /* SearchInteractor.swift in Sources */,
 				B4B308C1285352B500185812 /* AppDelegate.swift in Sources */,
+				B49B78F7285C681C0095A254 /* TrackCell.swift in Sources */,
 				B4B308D52853538900185812 /* MainTabBarController.swift in Sources */,
 				B4AC11AD2856793B00971C64 /* SearchWorker.swift in Sources */,
 				B4AC11B02856793B00971C64 /* SearchViewController.swift in Sources */,
