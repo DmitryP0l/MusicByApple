@@ -11,6 +11,8 @@
 		B49B78F5285C67DD0095A254 /* TrackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B49B78F4285C67DC0095A254 /* TrackCell.xib */; };
 		B49B78F7285C681C0095A254 /* TrackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49B78F6285C681C0095A254 /* TrackCell.swift */; };
 		B49B78FB285C82F30095A254 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49B78FA285C82F30095A254 /* FooterView.swift */; };
+		B49B78FE285D05BA0095A254 /* TrackDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B49B78FD285D05B90095A254 /* TrackDetailView.xib */; };
+		B49B7900285D05C60095A254 /* TrackDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49B78FF285D05C60095A254 /* TrackDetailView.swift */; };
 		B4AC11AC2856793B00971C64 /* SearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AC11A52856793B00971C64 /* SearchPresenter.swift */; };
 		B4AC11AD2856793B00971C64 /* SearchWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AC11A62856793B00971C64 /* SearchWorker.swift */; };
 		B4AC11AE2856793B00971C64 /* SearchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AC11A72856793B00971C64 /* SearchRouter.swift */; };
@@ -36,6 +38,8 @@
 		B49B78F4285C67DC0095A254 /* TrackCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackCell.xib; sourceTree = "<group>"; };
 		B49B78F6285C681C0095A254 /* TrackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackCell.swift; sourceTree = "<group>"; };
 		B49B78FA285C82F30095A254 /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
+		B49B78FD285D05B90095A254 /* TrackDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackDetailView.xib; sourceTree = "<group>"; };
+		B49B78FF285D05C60095A254 /* TrackDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackDetailView.swift; sourceTree = "<group>"; };
 		B4AC11A52856793B00971C64 /* SearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPresenter.swift; sourceTree = "<group>"; };
 		B4AC11A62856793B00971C64 /* SearchWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchWorker.swift; sourceTree = "<group>"; };
 		B4AC11A72856793B00971C64 /* SearchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRouter.swift; sourceTree = "<group>"; };
@@ -95,6 +99,15 @@
 				B49B78FA285C82F30095A254 /* FooterView.swift */,
 			);
 			path = FooterView;
+			sourceTree = "<group>";
+		};
+		B49B78FC285D05680095A254 /* TrackDetailView */ = {
+			isa = PBXGroup;
+			children = (
+				B49B78FD285D05B90095A254 /* TrackDetailView.xib */,
+				B49B78FF285D05C60095A254 /* TrackDetailView.swift */,
+			);
+			path = TrackDetailView;
 			sourceTree = "<group>";
 		};
 		B4AC11A32856781000971C64 /* Support */ = {
@@ -162,6 +175,7 @@
 		B4DBB5F62856757C0001A32F /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				B49B78FC285D05680095A254 /* TrackDetailView */,
 				B49B78F9285C82D80095A254 /* FooterView */,
 				B49B78F3285C679D0095A254 /* Cell */,
 				B4AC11B3285915E400971C64 /* SearchViewController.storyboard */,
@@ -253,6 +267,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4B308CD285352B900185812 /* LaunchScreen.storyboard in Resources */,
+				B49B78FE285D05BA0095A254 /* TrackDetailView.xib in Resources */,
 				B49B78F5285C67DD0095A254 /* TrackCell.xib in Resources */,
 				B4B308CA285352B800185812 /* Assets.xcassets in Resources */,
 				B4AC11B4285915E400971C64 /* SearchViewController.storyboard in Resources */,
@@ -324,6 +339,7 @@
 				B4B308C3285352B500185812 /* SceneDelegate.swift in Sources */,
 				B4AC11B6285919CB00971C64 /* UIVC + Storyboard.swift in Sources */,
 				B4AC11AC2856793B00971C64 /* SearchPresenter.swift in Sources */,
+				B49B7900285D05C60095A254 /* TrackDetailView.swift in Sources */,
 				B402BF322855237F0050FE78 /* NetworkService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
