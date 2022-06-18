@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import SDWebImage
+import AVKit
 
 final class TrackDetailView: UIView {
     
@@ -18,6 +20,12 @@ final class TrackDetailView: UIView {
     @IBOutlet weak var playPauseButton: UIButton!
     @IBOutlet weak var volumeSlider: UISlider!
     
+    let player: AVPlayer = {
+        let player = AVPlayer()
+        player.automaticallyWaitsToMinimizeStalling = false
+        return player
+    }()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         trackImageView.backgroundColor = .systemCyan
@@ -28,16 +36,45 @@ final class TrackDetailView: UIView {
     }
     @IBAction func handleCurrentTimeSlider(_ sender: UISlider) {
     }
+    
     @IBAction func previousTrackTapped(_ sender: UIButton) {
     }
     
     @IBAction func playPauseTapped(_ sender: UIButton) {
+        if player.timeControlStatus == .paused {
+            player.play()
+            playPauseButton.setImage(UIImage(systemName: "pause"), for: .normal)
+        } else {
+            player.pause()
+            playPauseButton.setImage(UIImage(systemName: "play"), for: .normal)
+        }
     }
     
     @IBAction func nextTrackTapped(_ sender: UIButton) {
     }
     
     @IBAction func handleVolumeSlider(_ sender: UISlider) {
+    }
+    
+    func set(viewModel: SearchViewModel.Cell) {
+        trackTitleLabel.text = viewModel.trackName
+        trackAuthorLAbel.text = viewModel.artistName
+        
+        playTrack(previewUrl: viewModel.previewUrl)
+        
+        let string600 = viewModel.iconUrlString?.replacingOccurrences(of: "100x100", with: "600x600")
+        guard let url = URL(string: string600 ?? "") else { return }
+        trackImageView.sd_setImage(with: url, completed: nil)
+    }
+    
+    private func playTrack(previewUrl: String?) {
+        print("playing \(previewUrl)")
+        guard let previewUrl = previewUrl, let url = URL(string: previewUrl) else { return }
+        let playerItem = AVPlayerItem(url: url)
+        player.replaceCurrentItem(with: playerItem)
+        player.play()
+        
+
     }
     
 }
