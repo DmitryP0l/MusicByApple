@@ -9,6 +9,11 @@ import UIKit
 import SDWebImage
 import AVKit
 
+protocol TrackDetailViewDelegate: AnyObject {
+    func moveBackForPreviousTrack() -> SearchViewModel.Cell?
+    func moveForwardForPreviousTrack() -> SearchViewModel.Cell?
+}
+
 final class TrackDetailView: UIView {
     
     @IBOutlet weak var trackImageView: UIImageView!
@@ -22,6 +27,7 @@ final class TrackDetailView: UIView {
     @IBOutlet weak var volumeMinImageView: UIImageView!
     @IBOutlet weak var volumeMaxImageView: UIImageView!
     
+    weak var delegate: TrackDetailViewDelegate?
     
     let player: AVPlayer = {
         let player = AVPlayer()
@@ -127,9 +133,6 @@ extension TrackDetailView {
         player.seek(to: seekTime)
     }
     
-    @IBAction func previousTrackTapped(_ sender: UIButton) {
-    }
-    
     @IBAction func playPauseTapped(_ sender: UIButton) {
         if player.timeControlStatus == .paused {
             player.play()
@@ -142,22 +145,31 @@ extension TrackDetailView {
         }
     }
     
+    @IBAction func previousTrackTapped(_ sender: UIButton) {
+        let cellViewModel = delegate?.moveBackForPreviousTrack()
+        guard let cellViewModel = cellViewModel else { return }
+        self.set(viewModel: cellViewModel)
+        
+    }
+    
     @IBAction func nextTrackTapped(_ sender: UIButton) {
+        let cellViewModel = delegate?.moveForwardForPreviousTrack()
+        guard let cellViewModel = cellViewModel else { return }
+        self.set(viewModel: cellViewModel)
     }
     
     @IBAction func handleVolumeSlider(_ sender: UISlider) {
         let volume = volumeSlider.value
         player.volume = volume
-        let volumeDouble = Double(volume)
-        if volumeDouble == 0.0 {
+        if volume == 0.0 {
             volumeMinImageView.image = UIImage(systemName: "speaker.slash")
             volumeMaxImageView.image = UIImage(systemName: "speaker.zzz")
-        } else if volumeDouble < 0.33 {
+        } else if volume < 0.33 {
             volumeMinImageView.image = UIImage(systemName: "speaker")
             volumeMaxImageView.image = UIImage(systemName: "speaker.wave.1")
-        } else if volumeDouble > 0.33 && volumeDouble < 0.66 {
+        } else if volume > 0.33 && volume < 0.66 {
             volumeMaxImageView.image = UIImage(systemName: "speaker.wave.2")
-        } else if volumeDouble > 0.66 {
+        } else if volume > 0.66 {
             volumeMaxImageView.image = UIImage(systemName: "speaker.wave.3")
         }
     }

@@ -99,6 +99,7 @@ extension SearchViewController: UITableViewDataSource {
         let window = UIApplication.shared.keyWindow
         let trackDetailsView = Bundle.main.loadNibNamed("TrackDetailView", owner: self, options: nil)?.first as! TrackDetailView
         trackDetailsView.set(viewModel: cellViewModel)
+        trackDetailsView.delegate = self
         window?.addSubview(trackDetailsView)
     }
     
@@ -129,4 +130,40 @@ extension SearchViewController: UISearchBarDelegate {
             self?.interactor?.makeRequest(request: Search.Model.Request.RequestType.getTracks(searchTerm: searchText))
         })
     }
+}
+
+
+extension SearchViewController: TrackDetailViewDelegate {
+    
+    private func getTrack(isForvardTrack: Bool) -> SearchViewModel.Cell? {
+        guard let indexPath = tableView.indexPathForSelectedRow else { return nil }
+        tableView.deselectRow(at: indexPath, animated: true)
+        var nextIndexPath: IndexPath!
+        if isForvardTrack {
+            nextIndexPath = IndexPath(row: indexPath.row + 1, section: indexPath.section)
+            if nextIndexPath.row == searchViewModel.cells.count {
+                nextIndexPath.row = 0
+            }
+        } else {
+            nextIndexPath = IndexPath(row: indexPath.row - 1, section: indexPath.section)
+            if nextIndexPath.row == -1 {
+                nextIndexPath.row = searchViewModel.cells.count - 1
+            }
+        }
+        tableView.selectRow(at: nextIndexPath, animated: true, scrollPosition: .none)
+        let cellViewModel = searchViewModel.cells[nextIndexPath.row]
+        return cellViewModel
+    }
+    
+    func moveBackForPreviousTrack() -> SearchViewModel.Cell? {
+        print("go back")
+        return getTrack(isForvardTrack: false)
+    }
+    
+    func moveForwardForPreviousTrack() -> SearchViewModel.Cell? {
+        print("go forward")
+        return getTrack(isForvardTrack: true)
+    }
+    
+    
 }
