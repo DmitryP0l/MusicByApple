@@ -19,6 +19,9 @@ final class TrackDetailView: UIView {
     @IBOutlet weak var trackAuthorLAbel: UILabel!
     @IBOutlet weak var playPauseButton: UIButton!
     @IBOutlet weak var volumeSlider: UISlider!
+    @IBOutlet weak var volumeMinImageView: UIImageView!
+    @IBOutlet weak var volumeMaxImageView: UIImageView!
+    
     
     let player: AVPlayer = {
         let player = AVPlayer()
@@ -77,7 +80,15 @@ final class TrackDetailView: UIView {
             let durationTime = self?.player.currentItem?.duration
             let currentDurationTimeText = ((durationTime ?? CMTimeMake(value: 1, timescale: 1)) - time).toDisplayString()
             self?.durationTimeLabel.text = "-\(currentDurationTimeText)"
+            self?.updateCurrentTimeSlider()
         }
+    }
+    
+    private func updateCurrentTimeSlider() {
+        let currentTimeSeconds = CMTimeGetSeconds(player.currentTime())
+        let durationSeconds = CMTimeGetSeconds(player.currentItem?.duration ?? CMTimeMake(value: 1, timescale:  1))
+        let percentage = currentTimeSeconds / durationSeconds
+        self.currentTimeSlider.value = Float(percentage)
     }
     
 //MARK: - Animations
@@ -108,6 +119,12 @@ extension TrackDetailView {
         self.removeFromSuperview()
     }
     @IBAction func handleCurrentTimeSlider(_ sender: UISlider) {
+        let percetage = currentTimeSlider.value
+        guard let duration = player.currentItem?.duration else { return }
+        let durationInSeconds = CMTimeGetSeconds(duration)
+        let seekTimeInSeconds = Float64(percetage) * durationInSeconds
+        let seekTime = CMTimeMakeWithSeconds(seekTimeInSeconds, preferredTimescale: 1)
+        player.seek(to: seekTime)
     }
     
     @IBAction func previousTrackTapped(_ sender: UIButton) {
@@ -129,5 +146,19 @@ extension TrackDetailView {
     }
     
     @IBAction func handleVolumeSlider(_ sender: UISlider) {
+        let volume = volumeSlider.value
+        player.volume = volume
+        let volumeDouble = Double(volume)
+        if volumeDouble == 0.0 {
+            volumeMinImageView.image = UIImage(systemName: "speaker.slash")
+            volumeMaxImageView.image = UIImage(systemName: "speaker.zzz")
+        } else if volumeDouble < 0.33 {
+            volumeMinImageView.image = UIImage(systemName: "speaker")
+            volumeMaxImageView.image = UIImage(systemName: "speaker.wave.1")
+        } else if volumeDouble > 0.33 && volumeDouble < 0.66 {
+            volumeMaxImageView.image = UIImage(systemName: "speaker.wave.2")
+        } else if volumeDouble > 0.66 {
+            volumeMaxImageView.image = UIImage(systemName: "speaker.wave.3")
+        }
     }
 }

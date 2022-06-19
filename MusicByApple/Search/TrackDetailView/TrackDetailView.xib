@@ -140,8 +140,8 @@
                                                 <action selector="handleVolumeSlider:" destination="TRF-Fw-abm" eventType="valueChanged" id="n65-CQ-Vw3"/>
                                             </connections>
                                         </slider>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="speaker.wave.3" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="pim-r6-sT9">
-                                            <rect key="frame" x="357" y="0.5" width="17" height="15.5"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="speaker.wave.2" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="pim-r6-sT9">
+                                            <rect key="frame" x="357" y="1.5" width="17" height="14"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="pim-r6-sT9" secondAttribute="height" multiplier="1:1" id="HEu-sV-Tjg"/>
                                                 <constraint firstAttribute="height" constant="17" id="YAS-BR-QAV"/>
@@ -178,6 +178,8 @@
                 <outlet property="trackAuthorLAbel" destination="XVz-fu-48J" id="CAp-iU-jyC"/>
                 <outlet property="trackImageView" destination="O7q-ve-Acn" id="kq1-Dp-Vrj"/>
                 <outlet property="trackTitleLabel" destination="osw-Eh-1ea" id="XJN-XM-6kT"/>
+                <outlet property="volumeMaxImageView" destination="pim-r6-sT9" id="jsY-MT-ID5"/>
+                <outlet property="volumeMinImageView" destination="kg0-zr-trY" id="fFV-6t-A9N"/>
                 <outlet property="volumeSlider" destination="FB5-OV-S22" id="VIo-aR-5SM"/>
             </connections>
             <point key="canvasLocation" x="-139.13043478260872" y="41.517857142857139"/>
@@ -189,7 +191,7 @@
         <image name="forward" catalog="system" width="128" height="79"/>
         <image name="pause" catalog="system" width="88" height="128"/>
         <image name="speaker" catalog="system" width="128" height="124"/>
-        <image name="speaker.wave.3" catalog="system" width="128" height="86"/>
+        <image name="speaker.wave.2" catalog="system" width="128" height="90"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
