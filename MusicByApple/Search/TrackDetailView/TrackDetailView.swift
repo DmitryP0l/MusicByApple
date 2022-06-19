@@ -44,6 +44,7 @@ final class TrackDetailView: UIView {
         
         playTrack(previewUrl: viewModel.previewUrl)
         monitorStartTime()
+        observePlayerCurrentTime()
         
         let string600 = viewModel.iconUrlString?.replacingOccurrences(of: "100x100", with: "600x600")
         guard let url = URL(string: string600 ?? "") else { return }
@@ -65,6 +66,17 @@ final class TrackDetailView: UIView {
         let times = [NSValue(time: time)]
         player.addBoundaryTimeObserver(forTimes: times, queue: .main) { [weak self] in
             self?.enlagreTrackImageView()
+        }
+    }
+    
+    private func observePlayerCurrentTime() {
+        let interval = CMTimeMake(value: 1, timescale: 2)
+        player.addPeriodicTimeObserver(forInterval: interval, queue: .main) { [weak self] time in
+            self?.currentTimeLabel.text = time.toDisplayString()
+            
+            let durationTime = self?.player.currentItem?.duration
+            let currentDurationTimeText = ((durationTime ?? CMTimeMake(value: 1, timescale: 1)) - time).toDisplayString()
+            self?.durationTimeLabel.text = "-\(currentDurationTimeText)"
         }
     }
     
