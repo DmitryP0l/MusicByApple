@@ -28,6 +28,7 @@ final class TrackDetailView: UIView {
     @IBOutlet weak var volumeMaxImageView: UIImageView!
     
     weak var delegate: TrackDetailViewDelegate?
+    weak var tabBarDelegate: MainTabBarControllerDelegate?
     
     let player: AVPlayer = {
         let player = AVPlayer()
@@ -122,8 +123,11 @@ final class TrackDetailView: UIView {
 extension TrackDetailView {
     
     @IBAction func dragDownButtonTapped(_ sender: UIButton) {
-        self.removeFromSuperview()
+        
+        self.tabBarDelegate?.minimizeTrackDetailController()
+//        self.removeFromSuperview()
     }
+    
     @IBAction func handleCurrentTimeSlider(_ sender: UISlider) {
         let percetage = currentTimeSlider.value
         guard let duration = player.currentItem?.duration else { return }

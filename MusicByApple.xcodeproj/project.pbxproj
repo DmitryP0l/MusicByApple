@@ -30,6 +30,7 @@
 		B4B308D52853538900185812 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B308D42853538900185812 /* MainTabBarController.swift */; };
 		B4B308D72853587900185812 /* SearchMusicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B308D62853587900185812 /* SearchMusicViewController.swift */; };
 		B4B308D92854A55400185812 /* SearchResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B308D82854A55400185812 /* SearchResponseModel.swift */; };
+		B4B4B90C286248EA00B298B2 /* Nib.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B4B90B286248EA00B298B2 /* Nib.swift */; };
 		B4F70672285F27E500269B1D /* CMTime + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F70671285F27E500269B1D /* CMTime + extension.swift */; };
 		CBBFEA8EA55DFE1C0E0D57D6 /* Pods_MusicByApple.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F927D417F628B1D01CE29C64 /* Pods_MusicByApple.framework */; };
 /* End PBXBuildFile section */
@@ -60,6 +61,7 @@
 		B4B308D42853538900185812 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		B4B308D62853587900185812 /* SearchMusicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMusicViewController.swift; sourceTree = "<group>"; };
 		B4B308D82854A55400185812 /* SearchResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResponseModel.swift; sourceTree = "<group>"; };
+		B4B4B90B286248EA00B298B2 /* Nib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nib.swift; sourceTree = "<group>"; };
 		B4F70671285F27E500269B1D /* CMTime + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CMTime + extension.swift"; sourceTree = "<group>"; };
 		CE3D90BD80EAE84E3B6E259D /* Pods-MusicByApple.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicByApple.debug.xcconfig"; path = "Target Support Files/Pods-MusicByApple/Pods-MusicByApple.debug.xcconfig"; sourceTree = "<group>"; };
 		E93C14B2B2B0DAD3E2DFCBFC /* Pods-MusicByApple.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicByApple.release.xcconfig"; path = "Target Support Files/Pods-MusicByApple/Pods-MusicByApple.release.xcconfig"; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 			children = (
 				B4AC11B5285919CA00971C64 /* UIVC + Storyboard.swift */,
 				B4F70671285F27E500269B1D /* CMTime + extension.swift */,
+				B4B4B90B286248EA00B298B2 /* Nib.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -335,6 +338,7 @@
 				B4B308C1285352B500185812 /* AppDelegate.swift in Sources */,
 				B49B78FB285C82F30095A254 /* FooterView.swift in Sources */,
 				B49B78F7285C681C0095A254 /* TrackCell.swift in Sources */,
+				B4B4B90C286248EA00B298B2 /* Nib.swift in Sources */,
 				B4B308D52853538900185812 /* MainTabBarController.swift in Sources */,
 				B4AC11AD2856793B00971C64 /* SearchWorker.swift in Sources */,
 				B4AC11B02856793B00971C64 /* SearchViewController.swift in Sources */,
