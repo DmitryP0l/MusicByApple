@@ -125,7 +125,6 @@ extension TrackDetailView {
     @IBAction func dragDownButtonTapped(_ sender: UIButton) {
         
         self.tabBarDelegate?.minimizeTrackDetailController()
-//        self.removeFromSuperview()
     }
     
     @IBAction func handleCurrentTimeSlider(_ sender: UISlider) {
