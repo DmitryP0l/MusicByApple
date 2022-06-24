@@ -27,15 +27,12 @@ final class TrackDetailView: UIView {
     @IBOutlet weak var volumeSlider: UISlider!
     @IBOutlet weak var volumeMinImageView: UIImageView!
     @IBOutlet weak var volumeMaxImageView: UIImageView!
-    
-    
+
     @IBOutlet weak var miniTrackView: UIView!
     @IBOutlet weak var miniTrackImageView: UIImageView!
     @IBOutlet weak var miniTrackTitleLabel: UILabel!
     @IBOutlet weak var miniGoForwardButton: UIButton!
     @IBOutlet weak var miniPlayPauseButton: UIButton!
-    
-    
     
     
     weak var delegate: TrackDetailViewDelegate?
@@ -50,6 +47,7 @@ final class TrackDetailView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         setTrackImageView()
+        setupGestures()
     }
     
 //MARK: - Setup
@@ -83,6 +81,98 @@ final class TrackDetailView: UIView {
         let playerItem = AVPlayerItem(url: url)
         player.replaceCurrentItem(with: playerItem)
         player.play()
+    }
+    
+//MARK: - Setup Gestures
+    
+    private func setupGestures() {
+        miniTrackView.addGestureRecognizer(UITapGestureRecognizer(target: self,
+                                                                  action: #selector(handleTopMaximized)))
+        miniTrackView.addGestureRecognizer(UIPanGestureRecognizer(target: self,
+                                                                  action: #selector(handlePan)))
+        maxiTrackView.addGestureRecognizer(UIPanGestureRecognizer(target: self,
+                                                                  action: #selector(handleDismissalPan)))
+    }
+    
+    private func handlePanChangedMiniView(gesture: UIPanGestureRecognizer) {
+        let translation = gesture.translation(in: self.superview)
+        self.transform = CGAffineTransform(translationX: 0, y: translation.y)
+        let newAlfa = 1 + translation.y / 200
+        self.miniTrackView.alpha = newAlfa < 0 ? 0 : newAlfa
+        self.maxiTrackView.alpha = -translation.y / 200
+    }
+    
+    private func handlePanEndedMiniView(gesture: UIPanGestureRecognizer) {
+        let translation = gesture.translation(in: self.superview)
+        let velocity = gesture.velocity(in: self.superview)
+        
+        UIView.animate(withDuration: 0.5,
+                       delay: 0,
+                       usingSpringWithDamping: 0.7,
+                       initialSpringVelocity: 1,
+                       options: .curveEaseOut,
+                       animations: {
+            self.transform = .identity
+            if translation.y < -200 || velocity.y < -500 {
+                self.tabBarDelegate?.maximizeTrackDetailController(viewModel: nil)
+            } else {
+                self.miniTrackView.alpha = 1
+                self.maxiTrackView.alpha = 0
+            }
+        },
+                       completion: nil)
+    }
+    
+    private func handlePanChangedMaxiView(gesture: UIPanGestureRecognizer) {
+        let translation = gesture.translation(in: self.superview)
+        maxiTrackView.transform = CGAffineTransform(translationX: 0, y: translation.y)
+    }
+    
+    private func handlePanEndedMaxiView(gesture: UIPanGestureRecognizer) {
+        let translation = gesture.translation(in: self.superview)
+        let velocity = gesture.velocity(in: self.superview)
+        UIView.animate(withDuration: 0.5,
+                       delay: 0,
+                       usingSpringWithDamping: 0.7,
+                       initialSpringVelocity: 1,
+                       options: .curveEaseInOut,
+                       animations: {
+            self.maxiTrackView.transform = .identity
+            if translation.y > 70 || velocity.y > 500 {
+                self.tabBarDelegate?.minimizeTrackDetailController()
+            }
+        },
+                       completion: nil)
+    }
+    
+    @objc private func handleTopMaximized() {
+        self.tabBarDelegate?.maximizeTrackDetailController(viewModel: nil)
+    }
+    
+    @objc private func handlePan(gesture: UIPanGestureRecognizer) {
+        switch gesture.state {
+            
+        case .began:
+        print("began")
+        case .changed:
+            handlePanChangedMiniView(gesture: gesture)
+        case .ended:
+            handlePanEndedMiniView(gesture: gesture)
+        @unknown default:
+        print("def")
+        }
+    }
+    
+    @objc private func handleDismissalPan(gesture: UIPanGestureRecognizer) {
+        switch gesture.state {
+             
+        case .changed:
+            handlePanChangedMaxiView(gesture: gesture)
+        case .ended:
+            handlePanEndedMaxiView(gesture: gesture)
+        @unknown default:
+            print("def")
+        }
     }
     
 //MARK: - Time setup
