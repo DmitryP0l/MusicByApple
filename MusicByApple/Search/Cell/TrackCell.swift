@@ -22,18 +22,33 @@ class TrackCell: UITableViewCell {
     @IBOutlet weak var trackNameLabel: UILabel!
     @IBOutlet weak var artistNameLabel: UILabel!
     @IBOutlet weak var collectionNameLabel: UILabel!
+    
+    
     static let identifier = "TrackCell"
+    var cell: SearchViewModel.Cell?
     
     override class func awakeFromNib() {
         super.awakeFromNib()
     }
+    
+    @IBAction func addTrackButton(_ sender: UIButton) {
+        
+        let userDefaults = UserDefaults.standard
+        
+        if let cell = cell, let savedData = try? NSKeyedArchiver.archivedData(withRootObject: cell.self, requiringSecureCoding: false) {
+            userDefaults.set(savedData, forKey: "Tracks")
+            print("save")
+        }
+    }
+    
     
     override func prepareForReuse() {
         super.prepareForReuse()
         trackImageView.image = nil
     }
     
-    func set(viewModel: TrackCellViewModel) {
+    func set(viewModel: SearchViewModel.Cell) {
+        self.cell = viewModel
         trackNameLabel.text = viewModel.trackName
         artistNameLabel.text = viewModel.artistName
         collectionNameLabel.text = viewModel.collectionName

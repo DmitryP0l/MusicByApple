@@ -52,7 +52,7 @@ struct Library: View {
 struct LibraryCell: View {
     var body: some View {
         HStack {
-            Image(systemName: "camera.fill")
+            Image(systemName: "camera.circle")
                 .resizable()
                 .frame(width: 60, height: 60)
                 .cornerRadius(2)
