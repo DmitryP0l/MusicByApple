@@ -32,6 +32,9 @@
 		B4B308D92854A55400185812 /* SearchResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B308D82854A55400185812 /* SearchResponseModel.swift */; };
 		B4B4B90C286248EA00B298B2 /* Nib.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B4B90B286248EA00B298B2 /* Nib.swift */; };
 		B4D46AB4286711F500EEEC6C /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D46AB3286711F500EEEC6C /* Library.swift */; };
+		B4D46AB6286B842100EEEC6C /* UserDefaults +  extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D46AB5286B842100EEEC6C /* UserDefaults +  extension.swift */; };
+		B4D46AB9286B90C900EEEC6C /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = B4D46AB8286B90C900EEEC6C /* URLImage */; };
+		B4D46ABC286B924000EEEC6C /* URLImageStore in Frameworks */ = {isa = PBXBuildFile; productRef = B4D46ABB286B924000EEEC6C /* URLImageStore */; };
 		B4F70672285F27E500269B1D /* CMTime + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F70671285F27E500269B1D /* CMTime + extension.swift */; };
 		CBBFEA8EA55DFE1C0E0D57D6 /* Pods_MusicByApple.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F927D417F628B1D01CE29C64 /* Pods_MusicByApple.framework */; };
 /* End PBXBuildFile section */
@@ -64,6 +67,7 @@
 		B4B308D82854A55400185812 /* SearchResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResponseModel.swift; sourceTree = "<group>"; };
 		B4B4B90B286248EA00B298B2 /* Nib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nib.swift; sourceTree = "<group>"; };
 		B4D46AB3286711F500EEEC6C /* Library.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
+		B4D46AB5286B842100EEEC6C /* UserDefaults +  extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults +  extension.swift"; sourceTree = "<group>"; };
 		B4F70671285F27E500269B1D /* CMTime + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CMTime + extension.swift"; sourceTree = "<group>"; };
 		CE3D90BD80EAE84E3B6E259D /* Pods-MusicByApple.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicByApple.debug.xcconfig"; path = "Target Support Files/Pods-MusicByApple/Pods-MusicByApple.debug.xcconfig"; sourceTree = "<group>"; };
 		E93C14B2B2B0DAD3E2DFCBFC /* Pods-MusicByApple.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicByApple.release.xcconfig"; path = "Target Support Files/Pods-MusicByApple/Pods-MusicByApple.release.xcconfig"; sourceTree = "<group>"; };
@@ -75,6 +79,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4D46AB9286B90C900EEEC6C /* URLImage in Frameworks */,
+				B4D46ABC286B924000EEEC6C /* URLImageStore in Frameworks */,
 				CBBFEA8EA55DFE1C0E0D57D6 /* Pods_MusicByApple.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -140,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				B4AC11B5285919CA00971C64 /* UIVC + Storyboard.swift */,
+				B4D46AB5286B842100EEEC6C /* UserDefaults +  extension.swift */,
 				B4F70671285F27E500269B1D /* CMTime + extension.swift */,
 				B4B4B90B286248EA00B298B2 /* Nib.swift */,
 			);
@@ -233,6 +240,10 @@
 			dependencies = (
 			);
 			name = MusicByApple;
+			packageProductDependencies = (
+				B4D46AB8286B90C900EEEC6C /* URLImage */,
+				B4D46ABB286B924000EEEC6C /* URLImageStore */,
+			);
 			productName = MusicByApple;
 			productReference = B4B308BD285352B500185812 /* MusicByApple.app */;
 			productType = "com.apple.product-type.application";
@@ -261,6 +272,10 @@
 				Base,
 			);
 			mainGroup = B4B308B4285352B500185812;
+			packageReferences = (
+				B4D46AB7286B90C900EEEC6C /* XCRemoteSwiftPackageReference "url-image" */,
+				B4D46ABA286B924000EEEC6C /* XCRemoteSwiftPackageReference "url-image" */,
+			);
 			productRefGroup = B4B308BE285352B500185812 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -333,6 +348,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4D46AB6286B842100EEEC6C /* UserDefaults +  extension.swift in Sources */,
 				B4F70672285F27E500269B1D /* CMTime + extension.swift in Sources */,
 				B4B308D92854A55400185812 /* SearchResponseModel.swift in Sources */,
 				B4B308D72853587900185812 /* SearchMusicViewController.swift in Sources */,
@@ -572,6 +588,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B4D46AB7286B90C900EEEC6C /* XCRemoteSwiftPackageReference "url-image" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dmytro-anokhin/url-image";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		B4D46ABA286B924000EEEC6C /* XCRemoteSwiftPackageReference "url-image" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dmytro-anokhin/url-image";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B4D46AB8286B90C900EEEC6C /* URLImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B4D46AB7286B90C900EEEC6C /* XCRemoteSwiftPackageReference "url-image" */;
+			productName = URLImage;
+		};
+		B4D46ABB286B924000EEEC6C /* URLImageStore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B4D46AB7286B90C900EEEC6C /* XCRemoteSwiftPackageReference "url-image" */;
+			productName = URLImageStore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B4B308B5285352B500185812 /* Project object */;
 }

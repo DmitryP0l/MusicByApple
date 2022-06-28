@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 enum Search {
     
@@ -40,7 +41,15 @@ class SearchViewModel: NSObject, NSCoding {
         cells = coder.decodeObject(forKey: "cells") as? [SearchViewModel.Cell] ?? []
     }
     
-    @objc(SearchViewModel_Cell)class Cell: NSObject, NSCoding {
+    @objc(SearchViewModel_Cell)class Cell: NSObject, NSCoding, Identifiable {
+        
+        var id = UUID()
+        var iconUrlString: String?
+        var trackName: String
+        var collectionName: String?
+        var artistName: String
+        var previewUrl: String?
+        
         func encode(with coder: NSCoder) {
             coder.encode(iconUrlString, forKey: "iconUrlString")
             coder.encode(trackName, forKey: "trackName")
@@ -58,12 +67,6 @@ class SearchViewModel: NSObject, NSCoding {
             
             
         }
-        
-        var iconUrlString: String?
-        var trackName: String
-        var collectionName: String?
-        var artistName: String
-        var previewUrl: String?
         
         init(iconUrlString: String?, trackName: String, collectionName: String?, artistName: String, previewUrl: String?) {
             self.iconUrlString = iconUrlString

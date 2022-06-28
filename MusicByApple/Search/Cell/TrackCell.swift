@@ -22,6 +22,8 @@ class TrackCell: UITableViewCell {
     @IBOutlet weak var trackNameLabel: UILabel!
     @IBOutlet weak var artistNameLabel: UILabel!
     @IBOutlet weak var collectionNameLabel: UILabel!
+    @IBOutlet weak var addTrackButtonOutlet: UIButton!
+    
     
     
     static let identifier = "TrackCell"
@@ -32,11 +34,14 @@ class TrackCell: UITableViewCell {
     }
     
     @IBAction func addTrackButton(_ sender: UIButton) {
-        
+    
         let userDefaults = UserDefaults.standard
-        
-        if let cell = cell, let savedData = try? NSKeyedArchiver.archivedData(withRootObject: cell.self, requiringSecureCoding: false) {
-            userDefaults.set(savedData, forKey: "Tracks")
+        var listOfTracks = userDefaults.savedTracks()
+        guard let cell = cell else { return }
+        addTrackButtonOutlet.isHidden = true
+        listOfTracks.append(cell)
+        if let savedData = try? NSKeyedArchiver.archivedData(withRootObject: listOfTracks.self, requiringSecureCoding: false) {
+            userDefaults.set(savedData, forKey: UserDefaults.favoriteTrackKey)
             print("save")
         }
     }
@@ -48,7 +53,18 @@ class TrackCell: UITableViewCell {
     }
     
     func set(viewModel: SearchViewModel.Cell) {
+        
         self.cell = viewModel
+        
+        let savedTracks = UserDefaults.standard.savedTracks()
+        let hasFavorite = savedTracks.firstIndex(where: {$0.trackName == self.cell?.trackName && $0.artistName == self.cell?.artistName}) != nil
+        
+        if hasFavorite {
+            addTrackButtonOutlet.isHidden = true
+        } else {
+            addTrackButtonOutlet.isHidden = false
+        }
+                
         trackNameLabel.text = viewModel.trackName
         artistNameLabel.text = viewModel.artistName
         collectionNameLabel.text = viewModel.collectionName

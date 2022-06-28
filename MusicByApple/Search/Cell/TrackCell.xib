@@ -62,6 +62,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="addTrackButtonOutlet" destination="OtZ-jI-VyP" id="O3C-9j-Qvv"/>
                 <outlet property="artistNameLabel" destination="v5v-Ig-XVy" id="fvn-Ii-L29"/>
                 <outlet property="collectionNameLabel" destination="c41-SK-YwJ" id="DFa-pD-D5K"/>
                 <outlet property="trackImageView" destination="JpM-1s-4NT" id="peG-qc-PNj"/>
