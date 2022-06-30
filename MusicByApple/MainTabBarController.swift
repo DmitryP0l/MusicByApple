@@ -34,7 +34,8 @@ final class MainTabBarController: UITabBarController {
     }
     
     private func setControllers() {
-        let library = Library()
+        var library = Library()
+        library.tabbarDelegate = self
         let hostVC = UIHostingController(rootView: library)
         hostVC.tabBarItem.image = UIImage(systemName: "music.note.list")
         hostVC.tabBarItem.title = "Library"

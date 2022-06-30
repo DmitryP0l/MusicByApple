@@ -10,7 +10,11 @@ import URLImage
 
 struct Library: View {
     
-    var tracks = UserDefaults.standard.savedTracks()
+    @State var tracks = UserDefaults.standard.savedTracks()
+    @State private var showingAlert = false
+    @State private var track: SearchViewModel.Cell!
+    
+    var tabbarDelegate: MainTabBarControllerDelegate?
     
     var body: some View {
         NavigationView {
@@ -19,6 +23,8 @@ struct Library: View {
                     HStack(spacing: 20) {
                         Button {
                             print("tap play")
+                            self.track = self.tracks[0]
+                            self.tabbarDelegate?.maximizeTrackDetailController(viewModel: self.track)
                         } label: {
                             Image(systemName: "play.fill")
                                 .frame(width: abs(geometry.size.width / 2 - 10), height: 50)
@@ -27,7 +33,8 @@ struct Library: View {
                                 .cornerRadius(10)
                         }
                         Button {
-                            print("tap upgrate")
+                            self.tracks = UserDefaults.standard.savedTracks()
+                            
                         } label: {
                             Image(systemName: "arrow.triangle.2.circlepath")
                                 .frame(width: abs(geometry.size.width / 2 - 10), height: 50)
@@ -44,11 +51,45 @@ struct Library: View {
                     .padding(.leading)
                     .padding(.trailing)
                 
-                List(tracks) { track in
-                    LibraryCell(cell: track)
+                List {
+                    ForEach(tracks) { track in
+                        LibraryCell(cell: track).gesture(
+                            LongPressGesture()
+                                .onEnded { _ in
+                                    self.track = track
+                                    self.showingAlert = true
+                                }
+                                .simultaneously(with: TapGesture()
+                                    .onEnded { _ in
+                                        self.track = track
+                                        self.tabbarDelegate?.maximizeTrackDetailController(viewModel: self.track)
+                                    }))
+                    }.onDelete(perform: delete)
                 }
-            }
+            }.actionSheet(isPresented: $showingAlert, content: {
+                ActionSheet(title: Text("Delete?"), message: Text("уверен?"), buttons: [.destructive(Text("delete"), action: {
+                    delete(track: self.track)
+                }), .cancel()
+                                                                                       ])
+            })
             .navigationTitle("Library")
+        }
+    }
+    func delete(at offsets: IndexSet) {
+        tracks.remove(atOffsets: offsets)
+        if let savedData = try? NSKeyedArchiver.archivedData(withRootObject: tracks, requiringSecureCoding: false) {
+            let userDefaults = UserDefaults.standard
+            userDefaults.set(savedData, forKey: UserDefaults.favoriteTrackKey)
+        }
+    }
+    
+    func delete(track: SearchViewModel.Cell) {
+        let index = tracks.firstIndex(of: track)
+        guard let myIndex = index else { return }
+        tracks.remove(at: myIndex)
+        if let savedData = try? NSKeyedArchiver.archivedData(withRootObject: tracks, requiringSecureCoding: false) {
+            let userDefaults = UserDefaults.standard
+            userDefaults.set(savedData, forKey: UserDefaults.favoriteTrackKey)
         }
     }
 }
