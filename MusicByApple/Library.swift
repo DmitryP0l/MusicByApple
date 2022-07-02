@@ -61,6 +61,14 @@ struct Library: View {
                                 }
                                 .simultaneously(with: TapGesture()
                                     .onEnded { _ in
+                                        let keyWindow = UIApplication.shared.connectedScenes
+                                            .filter({$0.activationState == .foregroundActive})
+                                            .map({$0 as? UIWindowScene})
+                                            .compactMap({$0})
+                                            .first?.windows
+                                            .filter({$0.isKeyWindow}).first
+                                        let tabbarVC = keyWindow?.rootViewController as? MainTabBarController
+                                        tabbarVC?.trackDetailView.delegate = self
                                         self.track = track
                                         self.tabbarDelegate?.maximizeTrackDetailController(viewModel: self.track)
                                     }))
@@ -122,4 +130,32 @@ struct Library_Previews: PreviewProvider {
     }
 }
 
-
+extension Library: TrackDetailViewDelegate {
+    func moveBackForPreviousTrack() -> SearchViewModel.Cell? {
+        let index = tracks.firstIndex(of: track)
+        guard let myIndex = index else { return nil }
+        var nextTrack: SearchViewModel.Cell
+        if myIndex - 1 == -1 {
+            nextTrack = tracks[tracks.count - 1]
+        } else {
+            nextTrack = tracks[myIndex - 1]
+            self.track = nextTrack
+        }
+       return nextTrack
+    }
+    
+    func moveForwardForPreviousTrack() -> SearchViewModel.Cell? {
+        let index = tracks.firstIndex(of: track)
+        guard let myIndex = index else { return nil }
+        var nextTrack: SearchViewModel.Cell
+        if myIndex + 1 == tracks.count {
+            nextTrack = tracks[0]
+        } else {
+            nextTrack = tracks[myIndex + 1]
+            self.track = nextTrack
+        }
+       return nextTrack
+    }
+    
+    
+}
